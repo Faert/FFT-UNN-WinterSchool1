@@ -30,8 +30,8 @@ endif()
 #
 # Object libraries with separate compiler keys
 #
-add_obj_lib("dft2" CommonConfiguration)
-add_obj_lib("dft4" CommonConfiguration)
-add_obj_lib("dft8" CommonConfiguration)
-add_obj_lib("dft16" CommonConfiguration)
+add_obj_lib("dft2" CustomConfiguration)
+add_obj_lib("dft4" CustomConfiguration)
+add_obj_lib("dft8" CustomConfiguration)
+add_obj_lib("dft16" CustomConfiguration)
 add_obj_lib("dft32" CustomConfiguration)
