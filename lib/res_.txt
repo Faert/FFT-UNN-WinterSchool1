@@ -1,11 +1,11 @@
 ================================
-Testing DFT16                     ++++
+Testing DFT16                      ++++
 ================================
-157 cycles min
-9.8125 CPE min
+160 cycles min
+10 CPE min
 ================================
-162 cycles average
-10.125 CPE average
+171 cycles average
+10.6875 CPE average
 ================================
 ================================
 Testing DFT8                       ++++

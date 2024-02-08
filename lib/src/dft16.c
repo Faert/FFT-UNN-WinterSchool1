@@ -141,7 +141,7 @@ extern void dft16Fwd(const cfloat32_t *pSrc, cfloat32_t *pDst)
     pDst[15].re = tmpDst_16[15].re * CP8_ + tmpDst_16[15].im * C3P8;
     pDst[15].im = tmpDst_16[15].im * CP8_ - tmpDst_16[15].re * C3P8;
 
-
+    /*
     pDst[0].re = tmpDst_16[0].re + pDst[8].re;
     pDst[0].im = tmpDst_16[0].im + pDst[8].im;
     pDst[1].re = tmpDst_16[1].re + pDst[9].re;
@@ -174,7 +174,17 @@ extern void dft16Fwd(const cfloat32_t *pSrc, cfloat32_t *pDst)
     pDst[14].re = tmpDst_16[6].re - pDst[14].re;
     pDst[14].im = tmpDst_16[6].im - pDst[14].im;
     pDst[15].re = tmpDst_16[7].re - pDst[15].re;
-    pDst[15].im = tmpDst_16[7].im - pDst[15].im;
+    pDst[15].im = tmpDst_16[7].im - pDst[15].im;*/
+    int vl = vsetvlmax_e32m4();
+    //vl = vsetvl_e32m4(16);
+    vfloat32m4_t tmpDst = vle32_v_f32m4((float*)&tmpDst_16, vl);
+    vfloat32m4_t pDst_1 = vle32_v_f32m4((float*)pDst, vl);
+    vfloat32m4_t pDst_2 = vle32_v_f32m4((float*)pDst+16, vl);
+    pDst_1 = vfadd_vv_f32m4 (tmpDst, pDst_2, vl);
+    pDst_2 = vfsub_vv_f32m4 (tmpDst, pDst_2, vl);
+
+    vse32_v_f32m4 ((float*)pDst, pDst_1, vl);
+    vse32_v_f32m4 ((float*)pDst+16, pDst_2, vl);
 
     return;
 }

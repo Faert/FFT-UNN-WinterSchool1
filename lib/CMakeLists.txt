@@ -22,7 +22,7 @@ add_library(CustomConfiguration INTERFACE)
 target_link_libraries(CustomConfiguration INTERFACE BaseConfiguration)
 if(BUILD_TYPE STREQUAL "Release")
     # Add custom optimization flags here:
-    target_compile_options(CustomConfiguration INTERFACE -Os)
+    target_compile_options(CustomConfiguration INTERFACE -O3)
 else()
     target_link_libraries(CustomConfiguration INTERFACE BaseOptConfiguration)
 endif()
@@ -30,7 +30,7 @@ endif()
 #
 # Object libraries with separate compiler keys
 #
-add_obj_lib("dft2" CommonConfiguration)
+add_obj_lib("dft2" CustomConfiguration)
 add_obj_lib("dft4" CustomConfiguration)
 add_obj_lib("dft8" CustomConfiguration)
 add_obj_lib("dft16" CustomConfiguration)
